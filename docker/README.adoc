@@ -5,7 +5,8 @@
 .eventstore
 ----
 # using docker
-docker run --name eventstore-node -it -p 2113:2113 -p 1113:1113 eventstore/eventstore
+docker run --name eventstore-node -it -p 2113:2113 -p 1113:1113 eventstore/eventstore:release-4.1.0
+docker logs -f eventstore-node
 
 # or using docker-compose gradle
 docker-compose -f docker/docker-compose-gradle.yaml up --build

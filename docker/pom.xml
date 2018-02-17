@@ -6,7 +6,7 @@
 
   <parent>
     <groupId>daggerok</groupId>
-    <artifactId>eventstore-org-examples</artifactId>
+    <artifactId>eventstore.org-examples</artifactId>
     <version>0.0.1</version>
   </parent>
 

@@ -6,7 +6,7 @@
 
   <groupId>daggerok</groupId>
   <version>0.0.1</version>
-  <artifactId>eventstore-org-examples</artifactId>
+  <artifactId>eventstore.org-examples</artifactId>
   <packaging>pom</packaging>
 
   <modules>

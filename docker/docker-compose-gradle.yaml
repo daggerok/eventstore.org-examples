@@ -1,11 +1,11 @@
-# docker run --name eventstore-node -it -p 2113:2113 -p 1113:1113 eventstore/eventstore
+# docker run --name eventstore-node -it -p 2113:2113 -p 1113:1113 eventstore/eventstore:release-4.1.0
 
 version: "2.1"
 
 services:
 
   gradle-eventstore-app:
-    image: eventstore/eventstore
+    image: eventstore/eventstore:release-4.1.0
     ports:
     - "1113:1113"
     - "2113:2113"
