@@ -1,0 +1,32 @@
+buildscript {
+  ext {
+    javaVersion = "1.8"
+  }
+}
+
+plugins {
+  id "idea"
+  id "base"
+  id "eclipse"
+  id "com.avast.gradle.docker-compose" version "0.6.13"
+}
+
+group = "daggerok"
+version = "0.0.1"
+sourceCompatibility = targetCompatibility = "$javaVersion"
+
+defaultTasks "clean", "build"
+
+dockerCompose {
+  useComposeFiles = [project.file("docker-compose-gradle.yaml")]
+  // captureContainersOutput = true
+  captureContainersOutput = false
+  stopContainers = true
+  removeContainers = true
+  removeImages = "Local"
+  removeVolumes = true
+  removeOrphans = true
+  forceRecreate = true
+  waitForTcpPorts = false
+  projectName = project.name
+}

@@ -1,2 +1,3 @@
 rootProject.name = "eventstore-org-examples"
 include "docs"
+include "docker"

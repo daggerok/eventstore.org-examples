@@ -1,0 +1,18 @@
+# docker run --name eventstore-node -it -p 2113:2113 -p 1113:1113 eventstore/eventstore
+
+version: "2.1"
+
+services:
+
+  gradle-eventstore-app:
+    image: eventstore/eventstore
+    ports:
+    - "1113:1113"
+    - "2113:2113"
+    networks: [backing-services]
+    restart: unless-stopped
+#    mem_limit: 209715200 # container limit: 200Mb (200 * 1024 * 1024)
+
+networks:
+  backing-services:
+    driver: bridge

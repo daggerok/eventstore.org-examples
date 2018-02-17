@@ -1,0 +1,31 @@
+= docker
+
+//tag::content[]
+
+.build
+----
+.botstrap eventstore
+----
+# using docker
+docker run --name eventstore-node -it -p 2113:2113 -p 1113:1113 eventstore/eventstore
+
+# or using docker-compose gradle
+docker-compose -f docker/docker-compose-gradle.yaml up --build
+docker-compose -f docker/docker-compose-gradle.yaml down -v
+
+#or using gradle
+./gradlew composeUp
+docker logs -f docker_gradle-eventstore-app_1
+./gradlew composeDown
+
+# or using docker-compose maven
+docker-compose -f docker/docker-compose-maven.yaml up --build
+docker-compose -f docker/docker-compose-maven.yaml down -v
+
+# or using maven
+./mvnw -pl docker com.dkanejs.maven.plugins:docker-compose-maven-plugin:1.0.1:up
+docker logs -f docker_maven-eventstore-app_1
+./mvnw -pl docker com.dkanejs.maven.plugins:docker-compose-maven-plugin:1.0.1:down
+----
+
+//end::content[]

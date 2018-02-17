@@ -1,6 +1,6 @@
-#service:
-#- docker
-#sudo: required
+service:
+- docker
+sudo: required
 group: travis_lts
 env:
   global:
@@ -10,14 +10,25 @@ jdk:
 - oraclejdk8
 - openjdk8
 install: true
-#before_script:
-#- sudo apt udate -y || true
-#- sudo apt install -y --no-install-recommends curl jq libxml2-utils docker-ce python-pip
-#- sudo pip install docker-compose httpie
+before_script:
+- sudo apt udate -y || true
+- sudo apt install -y --no-install-recommends curl jq libxml2-utils docker-ce python-pip
+- sudo pip install docker-compose httpie
 #- source <(curl -s https://raw.githubusercontent.com/daggerok/bash-functions/master/main.bash)
 script:
-- bash mvnw
 - bash gradlew clean asciidoctor
+- bash gradlew
+- bash mvnw
+#
+- ./gradlew docker:composeUp
+- docker logs -f docker_gradle-eventstore-app_1 &
+- sleep 15
+- ./gradlew docker:composeDown
+#
+- ./mvnw -pl docker com.dkanejs.maven.plugins:docker-compose-maven-plugin:1.0.1:up
+- docker logs -f docker_maven-eventstore-app_1 &
+- sleep 15
+- ./mvnw -pl docker com.dkanejs.maven.plugins:docker-compose-maven-plugin:1.0.1:down
 cache:
   directories:
   - $HOME/.m2
