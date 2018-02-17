@@ -1,4 +1,4 @@
-= eventstore-org-examples
+= eventstore-org-examples image:https://travis-ci.org/daggerok/eventstore.org-examples.svg?branch=master["Build Status", link="https://travis-ci.org/daggerok/eventstore.org-examples"]
 
 //tag::content[]
 
