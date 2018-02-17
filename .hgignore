@@ -1,4 +1,5 @@
 syntax: glob
+^.settings/*
 ^.gradle/*
 .idea/*
 .git/*
@@ -6,6 +7,7 @@ syntax: glob
 */build/*
 */target/*
 .DS_Store
+.project
 *.iml
 *.ipr
 *.iws
