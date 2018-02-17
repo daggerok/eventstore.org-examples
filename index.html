@@ -544,12 +544,14 @@ table.CodeRay td.code>pre{padding:0}
 <span id="author" class="author">Maksim Kostromin</span><br>
 <span id="email" class="email"><a href="mailto:daggerok@gmail.com">daggerok@gmail.com</a></span><br>
 <span id="revnumber">version 0.0.1,</span>
-<span id="revdate">2018-02-17 03:10:14 EET</span>
+<span id="revdate">2018-02-17 08:47:15 EET</span>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
-<li><a href="#enjoy">1. Enjoy! :)</a></li>
+<li><a href="#eventstore-java-client">1. EventStore Java Client</a></li>
+<li><a href="#links">2. Links</a></li>
+<li><a href="#enjoy">3. Enjoy! :)</a></li>
 </ul>
 </div>
 </div>
@@ -565,7 +567,77 @@ eventstore.org playground projects</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="enjoy">1. Enjoy! :)</h2>
+<h2 id="eventstore-java-client">1. EventStore Java Client</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="title">bootstrap (requires running docker eventstore container)</div>
+<div class="content">
+<pre>./gradlew bootRun
+
+http :8080/message message=hi
+# output
+{
+    "logPosition": {
+        "commitPosition": 54118,
+        "preparePosition": 54118
+    },
+    "nextExpectedVersion": 0
+}
+
+http :8080/message message=hi\ again!
+# output
+{
+    "logPosition": {
+        "commitPosition": 70915,
+        "preparePosition": 70915
+    },
+    "nextExpectedVersion": 1
+}
+
+http :8080/messages/0
+# output
+{
+    "createdAt": "2018-02-17T06:39:25.548Z",
+    "data": "{message=hi}",
+    "eventNumber": "0",
+    "stream": "messages",
+    "type": "message"
+}
+
+http :8080/messages/1
+# output
+{
+    "createdAt": "2018-02-17T06:40:01.962Z",
+    "data": "{message=hi again!}",
+    "eventNumber": "1",
+    "stream": "messages",
+    "type": "message"
+}</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>links:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><a href="https://github.com/msemys/esjc">Github: msemys/esjc</a></p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="links">2. Links</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><a href="https://eventstore.org/">eventstore.org</a>
+<a href="https://github.com/msemys/esjc">Github: msemys/esjc</a></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="enjoy">3. Enjoy! :)</h2>
 <div class="sectionbody">
 
 </div>
@@ -574,7 +646,7 @@ eventstore.org playground projects</p>
 <div id="footer">
 <div id="footer-text">
 Version 0.0.1<br>
-Last updated 2018-02-17 03:10:14 EET
+Last updated 2018-02-17 08:47:15 EET
 </div>
 </div>
 </body>
