@@ -1,10 +1,8 @@
-= docker
+= docker image:https://travis-ci.org/daggerok/eventstore.org-examples.svg?branch=master["Build Status", link="https://travis-ci.org/daggerok/eventstore.org-examples"]
 
 //tag::content[]
 
-.build
-----
-.botstrap eventstore
+.eventstore
 ----
 # using docker
 docker run --name eventstore-node -it -p 2113:2113 -p 1113:1113 eventstore/eventstore
@@ -14,9 +12,9 @@ docker-compose -f docker/docker-compose-gradle.yaml up --build
 docker-compose -f docker/docker-compose-gradle.yaml down -v
 
 #or using gradle
-./gradlew composeUp
+./gradlew docker:composeUp
 docker logs -f docker_gradle-eventstore-app_1
-./gradlew composeDown
+./gradlew docker:composeDown
 
 # or using docker-compose maven
 docker-compose -f docker/docker-compose-maven.yaml up --build
