@@ -14,21 +14,38 @@ before_script:
 - sudo apt udate -y || true
 - sudo apt install -y --no-install-recommends curl jq libxml2-utils docker-ce python-pip
 - sudo pip install docker-compose httpie
-#- source <(curl -s https://raw.githubusercontent.com/daggerok/bash-functions/master/main.bash)
+- source <(curl -s https://raw.githubusercontent.com/daggerok/bash-functions/master/main.bash)
 script:
 - bash gradlew clean asciidoctor
 - bash gradlew
 - bash mvnw
 #
-- ./gradlew docker:composeUp
+- bash ./gradlew docker:composeUp
 - docker logs -f docker_gradle-eventstore-app_1 &
 - sleep 5
-- ./gradlew docker:composeDown
+- bash ./gradlew docker:composeDown
 #
-- ./mvnw -pl docker com.dkanejs.maven.plugins:docker-compose-maven-plugin:1.0.1:up
+- bash ./mvnw -pl docker com.dkanejs.maven.plugins:docker-compose-maven-plugin:1.0.1:up
 - docker logs -f docker_maven-eventstore-app_1 &
 - sleep 25
 - ./mvnw -pl docker com.dkanejs.maven.plugins:docker-compose-maven-plugin:1.0.1:down
+#
+- bash ./gradlew :dock:compU
+- bash ./msemys-esjc/build/libs/*.jar &
+- wait_for 8080
+- http :8080/message message=hello!
+- http :8080/message message=hello\ again!
+- http :8080/messages/0
+- http :8080/messages/1
+- stop_any 8080
+- bash ./gradlew :dock:compD
+#
+- bash ./gradlew :dock:compU -Pprofile=gradle-all
+- http :8080/message message=hello!
+- http :8080/message message=hello\ again!
+- http :8080/messages/0
+- http :8080/messages/1
+- bash ./gradlew :dock:compD -Pprofile=gradle-all
 cache:
   directories:
   - $HOME/.m2

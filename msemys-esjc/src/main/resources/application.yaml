@@ -1,0 +1,6 @@
+spring:
+  profiles:
+    include:
+      - spring-boot
+      - event-store
+#      - event-store-clustered

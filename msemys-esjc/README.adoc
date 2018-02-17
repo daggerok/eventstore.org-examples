@@ -1,0 +1,54 @@
+= EventStore.JVM image:https://travis-ci.org/daggerok/eventstore.org-examples.svg?branch=master["Build Status", link="https://travis-ci.org/daggerok/eventstore.org-examples"]
+
+//tag::content[]
+
+.bootstrap (requires running docker eventstore container)
+----
+./gradlew bootRun
+
+http :8080/message message=hi
+# output
+{
+    "logPosition": {
+        "commitPosition": 54118,
+        "preparePosition": 54118
+    },
+    "nextExpectedVersion": 0
+}
+
+http :8080/message message=hi\ again!
+# output
+{
+    "logPosition": {
+        "commitPosition": 70915,
+        "preparePosition": 70915
+    },
+    "nextExpectedVersion": 1
+}
+
+http :8080/messages/0
+# output
+{
+    "createdAt": "2018-02-17T06:39:25.548Z",
+    "data": "{message=hi}",
+    "eventNumber": "0",
+    "stream": "messages",
+    "type": "message"
+}
+
+http :8080/messages/1
+# output
+{
+    "createdAt": "2018-02-17T06:40:01.962Z",
+    "data": "{message=hi again!}",
+    "eventNumber": "1",
+    "stream": "messages",
+    "type": "message"
+}
+----
+
+links:
+
+. link:https://github.com/msemys/esjc[Github: msemys/esjc]
+
+//end::content[]

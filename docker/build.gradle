@@ -13,12 +13,13 @@ plugins {
 
 group = "daggerok"
 version = "0.0.1"
-sourceCompatibility = targetCompatibility = "$javaVersion"
 
 defaultTasks "clean", "build"
 
+def profile = project.hasProperty("profile") ? project.property("profile") : "gradle"
+
 dockerCompose {
-  useComposeFiles = [project.file("docker-compose-gradle.yaml")]
+  useComposeFiles = [project.file("docker-compose-${profile}.yaml")]
   // captureContainersOutput = true
   captureContainersOutput = false
   stopContainers = true

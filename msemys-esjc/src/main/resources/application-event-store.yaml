@@ -1,0 +1,7 @@
+event-store:
+  single-node-address:
+    host: ${EVENTSOTRE_SINGLENODEADDRESS_HOST:127.0.0.1}
+    port: ${EVENTSOTRE_SINGLENODEADDRESS_PORT:1113}
+  user-credentials:
+    username: ${EVENTSOTRE_USERCREDENTIALS_USERNAME:admin}
+    password: ${EVENTSOTRE_USERCREDENTIALS_PASSWORD:changeit}

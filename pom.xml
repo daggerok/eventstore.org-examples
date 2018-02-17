@@ -11,6 +11,7 @@
 
   <modules>
      <module>docker</module>
+     <module>msemys-esjc</module>
   </modules>
 
   <properties>

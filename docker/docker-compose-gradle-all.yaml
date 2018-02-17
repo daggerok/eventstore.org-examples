@@ -1,0 +1,29 @@
+version: "2.1"
+
+services:
+
+  gradle-eventstore-app:
+    image: eventstore/eventstore:release-4.1.0
+    ports:
+    - "1113:1113"
+    - "2113:2113"
+    networks: [backing-services]
+    restart: unless-stopped
+
+  gradle-msemys-esjc-app:
+    depends_on:
+      gradle-eventstore-app:
+        condition: service_healthy
+    environment:
+      EVENTSOTRE_SINGLENODEADDRESS_HOST: gradle-eventstore-app
+    build:
+      context: ../msemys-esjc
+      dockerfile: gradle/Dockerfile
+    image: 127.0.0.1:5000/msemys-esjc
+    ports: ["8080:8080"]
+    networks: [backing-services]
+    restart: unless-stopped
+
+networks:
+  backing-services:
+    driver: bridge

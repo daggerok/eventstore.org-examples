@@ -14,10 +14,11 @@ Maksim Kostromin <daggerok@gmail.com>
 == Introduction
 include::includes/Introduction.adoc[]
 
-//== Gradle Maven Docker Starter
-//include::../../java-gradle-maven-docker-starter/README.adoc[tags=content]
+== EventStore Java Client
+include::../../msemys-esjc/README.adoc[tags=content]
 
-//== Links
-//. link:https://www.lightbend.com/akka[Learning Akka]
+== Links
+link:https://eventstore.org/[eventstore.org]
+link:https://github.com/msemys/esjc[Github: msemys/esjc]
 
 == Enjoy! :)

@@ -4,8 +4,15 @@
 
 .bootstrap event store
 ----
-./gradlew docker:composeUp
-./gradlew docker:composeDown
+./gradlew docker:composeUp -P=profile=gradle-all
+
+http :8080/message message=hello!        # { "nextExpectedVersion": 0 }
+http :8080/message message=hello\ again! # { "nextExpectedVersion": 1 }
+
+http :8080/messages/0
+http :8080/messages/1
+
+./gradlew docker:composeDown  -P=profile=gradle-all
 ----
 
 //end::content[]

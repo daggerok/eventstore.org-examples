@@ -1,3 +1,4 @@
 rootProject.name = "eventstore.org-examples"
 include "docs"
 include "docker"
+include "msemys-esjc"

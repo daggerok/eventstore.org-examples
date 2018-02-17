@@ -1,14 +1,26 @@
-.hg
 .gradle
-out
-build
-target
-.idea
-*.iml
-*.ipr
-*.iws
-*.log
-.DS_Store
-*.log
+/build/
+target/
+out/
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
 .project
 .settings
+.springBeans
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### NetBeans ###
+nbproject/private/
+build/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/
