@@ -1,0 +1,23 @@
+= eventstore.org examples {project-name} ({project-version}) image:https://travis-ci.org/daggerok/eventstore.org-examples.svg?branch=master["Build Status", link={github_url}]
+Maksim Kostromin <daggerok@gmail.com>
+{docdatetime}
+:toc:
+:revnumber: {project-version}
+:example-caption!:
+:icons: font
+:toc: left
+:numbered:
+:github_url: https://github.com/daggerok/eventstore.org-examples
+:github_branch_prefix: {github_url}/tree
+
+[discrete]
+== Introduction
+include::includes/Introduction.adoc[]
+
+//== Gradle Maven Docker Starter
+//include::../../java-gradle-maven-docker-starter/README.adoc[tags=content]
+
+//== Links
+//. link:https://www.lightbend.com/akka[Learning Akka]
+
+== Enjoy! :)

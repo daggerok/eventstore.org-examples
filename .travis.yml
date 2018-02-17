@@ -17,7 +17,7 @@ install: true
 #- source <(curl -s https://raw.githubusercontent.com/daggerok/bash-functions/master/main.bash)
 script:
 - bash mvnw
-- bash gradlew
+- bash gradlew clean asciidoctor
 cache:
   directories:
   - $HOME/.m2

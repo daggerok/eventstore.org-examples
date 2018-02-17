@@ -1,0 +1,3 @@
+This documentation contains some help to
+link:{github_url}[examples from eventstore.org-examples repository].
+eventstore.org playground projects

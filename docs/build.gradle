@@ -1,0 +1,61 @@
+buildscript {
+  ext {
+    asciidocBuildDir = "$buildDir/asciidoc"
+  }
+}
+
+plugins {
+  id "base"
+  id "org.asciidoctor.convert" version "1.5.6"
+  id "org.ajoberstar.git-publish" version "0.2.2"
+}
+
+version "0.0.1"
+group "daggerok"
+
+asciidoctorj {
+  version = "1.5.5"
+}
+
+asciidoctor {
+  sourceDir = project.file("src")
+  sources {
+    include "index.adoc"
+  }
+  outputDir = project.file("$asciidocBuildDir")
+  attributes toc: "left",
+      idprefix: "",
+      docinfo1: "",
+      icons: "font",
+      idseparator: "-",
+      setanchors: "true",
+      "source-highlighter": "coderay",
+      "toc-title": "Table of Contents",
+      "build-gradle": file("build.gradle"),
+      "endpoint-url": "https://daggerok.github.io/eventstore.org-examples"
+}
+
+gitPublish {
+
+  repoUri = "git@github.com:daggerok/eventstore.org-examples.git"
+  branch = "gh-pages"
+
+  contents {
+    from("$asciidocBuildDir/html5")
+    from("$projectDir/src/static") {
+      into "."
+    }
+  }
+
+  commitMessage = "Documentation for ${project.group}:${project.name}:$project.version"
+}
+
+gitPublishPush.doLast {
+  file("$buildDir/gitPublish/404.html").text = file("$buildDir/gitPublish/index.html")
+  file("$buildDir/gitPublish/.nojekyll").text = "\n"
+}
+
+gitPublishPush.dependsOn asciidoctor
+gitPublishPush.shouldRunAfter clean, asciidoctor, build
+
+task docs(dependsOn: gitPublishPush)

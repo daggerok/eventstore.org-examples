@@ -1,0 +1,21 @@
+= problem solving
+
+.if you've got error like this:
+----
+* What went wrong:
+Execution failed for task ':docs:gitPublishCommit'.
+> Exception caught during execution of add command
+
+* Try:
+Run with --stacktrace option to get the stack trace. Run with --info or --debug option to get more log output. Run with --scan to get full insights.
+
+* Get more help at https://help.gradle.org
+
+BUILD FAILED in 9s
+7 actionable tasks: 6 executed, 1 up-to-date
+----
+
+.just run docs task again (don't know why, don't ask...)
+----
+bash gradlew clean docs
+----
